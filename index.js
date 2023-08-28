@@ -23,6 +23,30 @@
       reloadItemList();
     };
 
+
+    //  Deleting the particular TODO list
+    function deleted(itemIndex)
+    {
+      console.log("deleting item!");
+      itemJsonArrayStr = localStorage.getItem('itemsJson');
+      itemJsonArray = JSON.parse(itemJsonArrayStr);
+
+      // deleting the item element index from the array
+      itemJsonArray.splice(itemIndex, 1);
+      localStorage.setItem('itemsJson', JSON.stringify(itemJsonArray));
+      reloadItemList();
+    }
+    
+    // deleting the all TODO's lists
+    function clearStorage(){
+      if(confirm("Once you click ok, It will delete all the TODOs list!"))
+      {
+        console.log("Clearing the storage...");
+        localStorage.clear();
+        reloadItemList();
+      }
+    }
+
     // featching all the list before and after every action takes place. 
     function reloadItemList()
     {
